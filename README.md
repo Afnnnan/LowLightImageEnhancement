@@ -8,8 +8,20 @@ This project is part of the **IE643 course** and focuses on the **unsupervised e
 > - [SCI](https://github.com/tengyu1998/SCI)
 > - [ESRGAN](https://github.com/xinntao/ESRGAN)
 
-> For implementation details, refer to the complete code in the notebook: [Notebook.ipynb](Notebook.ipynb) and for further details, consult the report: [Report.pdf](Report.pdf).  
+> For implementation details, refer to the complete code in the notebook: [LowLightEnhancement.ipynb](LowLightEnhancement.ipynb) and for further details, consult the report: [Report.pdf](Report.pdf).  
 ---
+
+## Method Overview
+
+The proposed approach follows a **two-stage unsupervised pipeline**:
+1. **Zero-DCE** enhances illumination in low-light images without paired supervision.
+2. **ESRGAN** performs super-resolution to recover high-frequency details and improve perceptual quality.
+
+![Architecture Diagram](assets/pipeline.png)
+
+**Figure:** Overall pipeline combining Zero-DCE for illumination enhancement and ESRGAN for super-resolution.
+---
+
 
 ## **Implementation Steps**  
 
@@ -51,10 +63,26 @@ Below is an example of the project's output:
 
 
 
-![Results](img.png)
+![Results](assets/comparison.png)
 
 ---
 
+### **5. Quantitative Results**
+
+To quantitatively evaluate the performance of the proposed approach, we use the following metrics:
+
+- **PSNR (Peak Signal-to-Noise Ratio):** Measures reconstruction fidelity.
+- **SSIM (Structural Similarity Index):** Measures perceptual and structural similarity.
+
+### Comparison with Baseline Methods
+
+| Method                     | PSNR (dB) | SSIM  |
+|---------------------------|-----------|-------|
+| EnlightenGAN + ESRGAN     | 19.08     | 0.5056 |
+| SCI + ESRGAN              | 15.64     | 0.2768 |
+| **Proposed (Zero-DCE + ESRGAN)** | **19.75** | **0.5223** |
+
+---
 ## **References**  
 
 - [Zero-DCE Keras](https://youtu.be/PGOWjMCMB8I?si=pefyKe2gfMt3O-xJ)  
